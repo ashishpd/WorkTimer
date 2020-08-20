@@ -1,0 +1,16 @@
+.container {
+  width: 400px;
+  margin-top: 70px;
+  padding: 0 20px;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color:white;
+}
+
+i {
+  float: left;
+}
+
