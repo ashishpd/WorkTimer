@@ -43,38 +43,46 @@ function addDays(date, days) {
 }
 
 var monday = getMonday(new Date());
-
 //Locate svg
 var svgContainer = d3.select("svg");
-for (var i = 0; i < 5; i++) {
-  
-  var day = (addDays(monday, i)).getDate();
-  var x = (60 * (i+1));
-  if(day>10)
-    x-= 11;
-  
-  var fill = "white";
-  var stroke = "black";
-  var fontColor = "black";
-  if(day == (new Date()).getDate()) {
-    fill="red";
-    stroke = "red";
-    fontColor = "white";
+for (var j = 0; j < 4; j++) {
+  for (var i = 0; i < 5; i++) {    
+    var day = (addDays(monday, i + j*7)).getDate();
+    var x = (60 * (i+1));
+    if(day>=10)
+      x-= 11;
+    var fill = "white";
+    var stroke = "black";
+    var fontColor = "black";
+    var today = (new Date()).getDate();
+    if(day == today) {
+      fill="red";
+      stroke = "red";
+      fontColor = "white";
+    }
+
+    if(j==0) {
+      var circle = svgContainer.append("circle")
+      .attr("cx", 60 * (i+1))
+      .attr("cy", 30)
+      .attr("r", 25)
+      .attr("stroke",stroke)
+      .attr("stroke-width",2)
+      .attr("fill",fill);
+
+      if(day<today) circle.attr("stroke","white");
+    }
+
+    var y = 38;  
+    if(j == 1) y = 85;
+    if(j == 2) y = 115;
+    if(j > 2) y += 35*j;
+    var text = svgContainer.append("text")
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("font-size","1.5em")
+                            .attr("fill",fontColor)
+                            .text(day);
+
   }
-  
-    var circle = svgContainer.append("circle")
-    .attr("cx", 60 * (i+1))
-    .attr("cy", 30)
-    .attr("r", 25)
-    .attr("stroke",stroke)
-    .attr("stroke-width",2)
-    .attr("fill",fill);
-
-  var text = svgContainer.append("text")
-                          .attr("x", x)
-                          .attr("y", 38)
-                          .attr("font-size","1.5em")
-                          .attr("fill",fontColor)
-                          .text(day);
-
 }

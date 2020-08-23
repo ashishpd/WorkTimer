@@ -6,7 +6,7 @@ function createMainWindow() {
     mainWindow = new BrowserWindow({
       title: 'WorkTimer',
       width: 450,
-      height: 400,      
+      height: 500,      
       backgroundColor: 'white',
       webPreferences: {
         nodeIntegration: true,
