@@ -11,6 +11,8 @@ function createMainWindow() {
       webPreferences: {
         nodeIntegration: true,
       },
+      transparent: true, 
+      frame: true
     })
 
     mainWindow.loadFile('./app/index.html')      
