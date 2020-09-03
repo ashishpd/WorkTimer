@@ -45,10 +45,12 @@ function addDays(date, days) {
 var monday = getMonday(new Date());
 //Locate svg
 var svgContainer = d3.select("svg");
-for (var j = 0; j < 4; j++) {
-  for (var i = 0; i < 5; i++) {    
-    var day = (addDays(monday, i + j*7)).getDate();
-    var x = (60 * (i+1));
+const totalRows = 4
+const columnsPerRow = 5
+for (var row = 0; row < totalRows; row++) {
+  for (var column = 0; column < columnsPerRow; column++) {    
+    var day = (addDays(monday, column + row*7)).getDate();
+    var x = (60 * (column+1));
     if(day>=10)
       x-= 11;
     var fill = "white";
@@ -61,22 +63,21 @@ for (var j = 0; j < 4; j++) {
       fontColor = "white";
     }
 
-    if(j==0) {
+    if(row==0 && day <= 7 && day>=today) {
       var circle = svgContainer.append("circle")
-      .attr("cx", 60 * (i+1))
+      .attr("cx", 60 * (column+1))
       .attr("cy", 30)
       .attr("r", 25)
       .attr("stroke",stroke)
       .attr("stroke-width",2)
       .attr("fill",fill);
-
-      if(day<today) circle.attr("stroke","white");
+      //if(day<today) circle.attr("stroke","white");
     }
 
     var y = 38;  
-    if(j == 1) y = 85;
-    if(j == 2) y = 115;
-    if(j > 2) y += 35*j;
+    if(row == 1) y = 85;
+    if(row == 2) y = 115;
+    if(row > 2) y += 35*row;
     var text = svgContainer.append("text")
                             .attr("x", x)
                             .attr("y", y)
@@ -85,4 +86,18 @@ for (var j = 0; j < 4; j++) {
                             .text(day);
 
   }
+}
+
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const monthsPerRow = 5;
+for (var column = 0; column < columnsPerRow; column++) {
+  var today = new Date();
+  today.setMonth(today.getMonth() + column);
+  var text = svgContainer.append("text")
+                        .attr("x", (55 * (column+1)))
+                        .attr("y", 170)
+                        .attr("font-size","1.5em")
+                        .attr("fill",fontColor)
+                        .text(months[today.getMonth()]);
+
 }
