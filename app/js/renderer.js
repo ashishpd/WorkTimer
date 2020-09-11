@@ -63,7 +63,7 @@ for (var row = 0; row < totalRows; row++) {
       fontColor = "white";
     }
 
-    if(row==0 && day <= 7 && day>=today) {
+    if(row==0 && day ==today) {
       var circle = svgContainer.append("circle")
       .attr("cx", 60 * (column+1))
       .attr("cy", 30)
