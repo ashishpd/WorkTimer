@@ -8,6 +8,7 @@ endDate.setMinutes(endDate.getMinutes() + startingMinute);
 document.getElementById('counter').innerText = startingMinute + "m";
 
 var hourFormater = d3.timeFormat("%I:%M%p");
+var dateTimeFormater = d3.timeFormat("%I:%M%p (%m/%d)");
 document.getElementById('startTime').innerText = "Started at: " + hourFormater(new Date());
 document.getElementById('endTime').innerText = "Finish by: " + hourFormater(endDate);
 var myInt = setInterval(function () {
@@ -27,6 +28,19 @@ var myInt = setInterval(function () {
     //    delta = minutes + "m";
     document.getElementById('counter').innerText = delta;
     document.title = delta;
+
+    var fivePM = new Date();
+    var goalDay = "today";
+    if(curDate.getHours() > 17) {
+      fivePM.setDate(fivePM.getDate() + 1);
+      goalDay = "tomorrow";
+    }
+    fivePM.setHours(17); 
+    fivePM.setMinutes(0);
+    var tss = d3.timeSecond.count(curDate, fivePM);
+    var hh = Math.floor(tss / 60 / 60);
+    var mm = Math.floor(tss / 60) - hh * 60;
+    document.getElementById('fivePM').innerText = "I have " + hh + " hours and " + mm  + " precious minutes availale to finish my set goal by " + goalDay + " " + dateTimeFormater(fivePM);
 }, 10000);
 
 function getMonday(d) {
