@@ -10,6 +10,7 @@ function createMainWindow() {
       backgroundColor: 'white',
       webPreferences: {
         nodeIntegration: true,
+        contextIsolation: false,
       },
       transparent: true, 
       frame: true

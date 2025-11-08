@@ -40,7 +40,7 @@ var myInt = setInterval(function () {
     var tss = d3.timeSecond.count(curDate, fivePM);
     var hh = Math.floor(tss / 60 / 60);
     var mm = Math.floor(tss / 60) - hh * 60;
-    document.getElementById('fivePM').innerText = "I have " + hh + " hours and " + mm  + " precious minutes availale to finish my set goal by " + goalDay + " " + dateTimeFormater(fivePM);
+    document.getElementById('fivePM').innerText = "I have " + hh + " hours and " + mm  + " precious minutes available to finish my set goal by " + goalDay + " " + dateTimeFormater(fivePM);
 }, 10000);
 
 function getMonday(d) {

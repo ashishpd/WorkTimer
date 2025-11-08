@@ -10,10 +10,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^9.1.2",
-    "nodemon": "^2.0.4"
+    "electron": "^35.7.5",
+    "nodemon": "^3.1.0"
   },
   "dependencies": {
-    "d3": "^5.16.0"
+    "d3": "^7.9.0"
   }
 }
